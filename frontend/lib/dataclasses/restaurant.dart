@@ -40,5 +40,4 @@ class Restaurant{
 
   int get id => _id;
 
-
 }

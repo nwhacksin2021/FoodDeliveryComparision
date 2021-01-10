@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/card.dart';
+import 'dataclasses/restaurant.dart';
 import 'restaurantListPage.dart' as RestaurantListPage;
 
 void main() {
@@ -49,6 +50,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  List<ListItem> list = [
+    HeadingItem("Fast Food"), MessageItem("McDonalds", ""),
+    MessageItem("KFC", ""),
+    HeadingItem("Japanese"), MessageItem("Green Leaf", ""),
+    MessageItem("Sushi Cali", ""),
+    MessageItem("abc", "")
+  ];
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -114,13 +124,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => RestaurantListPage.RestaurantListPage(
-                                items: List<ListItem>.generate(
-                                  1000,
-                                  (i) => i % 6 == 0
-                                      ? HeadingItem("Heading $i")
-                                      : MessageItem(
-                                          "Sender $i", "Message body $i"),
-                                ),
+                            items: list
+                                // items: List<ListItem>.generate(
+                                //   1000,
+                                //   (i) => i % 6 == 0
+                                //       ? HeadingItem("Category $i")
+                                //       : MessageItem(
+                                //           "Restaurant $i", "Message body $i"),
+                                // ),
                               )),
                     );
                   },
