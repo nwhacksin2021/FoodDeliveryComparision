@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/card.dart';
+import './dataclasses/restaurant.dart';
 
-class RestaurantListPage extends StatelessWidget {
+class DeliveryLogos extends StatelessWidget {
+  final List<int> providers;
 
-  final List<ListItem> items;
+  DeliveryLogos({Key key, @required this.providers}) : super(key: key);
 
-  RestaurantListPage({Key key, @required this.items}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container();
+  }
+}
+
+class RestaurantListScreen extends StatelessWidget {
+  final List<Restaurant> restaurants;
+
+  RestaurantListScreen({Key key, @required this.restaurants}) : super(key: key);
 
   @override
   Widget build(BuildContext ctxt) {
@@ -15,15 +27,31 @@ class RestaurantListPage extends StatelessWidget {
       ),
       body: ListView.builder(
         // Let the ListView know how many items it needs to build.
-        itemCount: items.length,
+        itemCount: restaurants.length,
         // Provide a builder function. This is where the magic happens.
         // Convert each item into a widget based on the type of item it is.
         itemBuilder: (context, index) {
-          final item = items[index];
+          final restaurant = restaurants[index];
 
-          return ListTile(
-            title: item.buildTitle(context),
-            subtitle: item.buildSubtitle(context),
+          RestaurantCardItem restaurantCard = new RestaurantCardItem(
+              restaurant.name,
+              restaurant.openingTime,
+              restaurant.closingTime,
+              restaurant.address);
+
+          return Column(
+            children: <Widget>[
+              ListTile(
+                title: restaurantCard.buildTitle(context),
+                isThreeLine: true,
+                subtitle: restaurantCard.buildSubTitle(context),
+                onTap: () {
+                  //TODO: make API call to fetch menu data
+                },
+                //TODO: show the icons. for some reason you can't access the restaurant variable
+                //trailing: DeliveryLogos(restaurant.listOfSupportedProviders),
+              ),
+            ],
           );
         },
       ),
