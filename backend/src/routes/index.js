@@ -1,6 +1,7 @@
 const express = require('express')
 
 const menuRoutes = require('./menu')
+const restaurantRoutes = require('./restaurant')
 
 const router = express.Router()
 
@@ -9,7 +10,7 @@ router.get('/', function (req, res) {
 })
 
 router.use('/menu', menuRoutes)
-console.log(`this is router: ${router}`)
+router.use('/restaurant', restaurantRoutes)
 
 module.exports = router
 
