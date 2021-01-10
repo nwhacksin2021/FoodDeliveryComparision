@@ -3,7 +3,7 @@ const restaurantRoutes = require('../controllers/restaurant')
 
 const router = express.Router()
 
-router.get('/:id', restaurantRoutes.getRestaurantsById)
-router.get('/city/:city', restaurantRoutes.getRestaurantsByCity)
+router.get('/:city', restaurantRoutes.getRestaurantsByCity)
+router.get('/id/:id', restaurantRoutes.getRestaurantsById)
 
 module.exports = router
