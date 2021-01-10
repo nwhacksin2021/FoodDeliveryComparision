@@ -1,0 +1,13 @@
+{
+  "name": "nwhacks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "heroku-prebuild": "cd backend && npm install && node ./src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  }
+}
