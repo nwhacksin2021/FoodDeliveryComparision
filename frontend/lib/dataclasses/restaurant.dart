@@ -82,10 +82,8 @@ class Restaurant {
         null, //delivery fee
         null, //average rating
         providerIds,
-        //DateTime.parse(json['opening_time']), //TODO
-        //DateTime.parse(json['closing_time']), //TODO
-        DateTime.now(),
-        DateTime.now(),
+        DateTime.parse(json['opening_time']),
+        DateTime.parse(json['closing_time']),
         restaurantCategoryIds,
         restaurantCategories);
   }
