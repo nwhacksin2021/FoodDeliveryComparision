@@ -56,18 +56,18 @@ class Restaurant {
 
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     //TODO:
-    List<int> restaurantCategoryIds = new List();
+    List<int> restaurantCategoryIds = [];
     restaurantCategoryIds.add(json['restaurant_category_id']);
 
     //TODO:
-    List<RestaurantCategory> restaurantCategories = new List();
+    List<RestaurantCategory> restaurantCategories = [];
     restaurantCategories.add(RestaurantCategory.values[json['restaurant_category_id']]);
 
 //    for (int i = 0; i < json.decode(json['restaurant_category_id']).length; i++ ) {
 //      restaurantCategories.add(RestaurantCategory.values[json['restaurant_category_id'][i]]);
 //    }
 
-    List<int> providerIds = new List();
+    List<int> providerIds = [];
 
     List<dynamic> providers = json['providers'];
 
@@ -98,6 +98,8 @@ Future<List<Restaurant>> fetchRestaurants(String city) async {
       'Content-Type': 'application/json; charset=UTF-8',
     },
   );
+
+  print(response.body);
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,

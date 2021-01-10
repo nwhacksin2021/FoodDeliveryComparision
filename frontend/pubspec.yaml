@@ -19,6 +19,8 @@ environment:
 dependencies:
   http: ^0.12.2
   intl: ^0.15.7
+  multi_select_flutter: ^3.1.6
+
   flutter:
     sdk: flutter
 

@@ -2,20 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/card.dart';
 import './dataclasses/restaurant.dart';
 
-class DeliveryLogos extends StatelessWidget {
-  final List<int> providers;
-
-  DeliveryLogos({Key key, @required this.providers}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container();
-  }
-}
-
 class RestaurantListScreen extends StatelessWidget {
   final List<Restaurant> restaurants;
+  List<String> filterOptionsSelected;
 
   RestaurantListScreen({Key key, @required this.restaurants}) : super(key: key);
 
@@ -23,8 +12,10 @@ class RestaurantListScreen extends StatelessWidget {
   Widget build(BuildContext ctxt) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Select a restaurant"),
-      ),
+          title: restaurants.length > 0
+              ? new Text(restaurants[0].address)
+              : new Text(
+                  "There are no available restaurants for the city you searched")),
       body: ListView.builder(
         // Let the ListView know how many items it needs to build.
         itemCount: restaurants.length,
@@ -55,6 +46,77 @@ class RestaurantListScreen extends StatelessWidget {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: ctxt,
+            //builder: (BuildContext context) => _buildPopupDialog(context, filterOptionsSelected),
+          );
+        },
+        child: Icon(Icons.settings_input_component),
+      ),
     );
   }
 }
+
+//Widget _buildPopupDialog(BuildContext context, List<String> filterOptionsSelected) {
+//  return AlertDialog(
+//      title: Text("Select filters"),
+//      content:MultiSelectChip(
+//        filterOptions,
+//        onSelectionChanged: (selectedList) {
+//          setState(() {
+//            selectedReportList = selectedList;
+//          });
+//        },
+//      ),
+//  )
+//}
+
+List<String> filterOptions = [
+  "Delivery Fee",
+  "Alphabetical"
+  //Cuisine,
+];
+
+//class _MultiSelectChipState extends State<MultiSelectChip> {
+//  List<String> selectedFilterOptions = [];
+//
+//  _buildChoiceList() {
+//    List<Widget> choices = [];
+//    widget.filterOptions.forEach((item) {
+//      choices.add(Container(
+//        padding: const EdgeInsets.all(2.0),
+//        child: ChoiceChip(
+//          label: Text(item),
+//          selected: selectedFilterOptions.contains(item),
+//          onSelected: (selected) {
+//            setState(() {
+//              selectedFilterOptions.contains(item)
+//                  ? selectedFilterOptions.remove(item)
+//                  : selectedFilterOptions.add(item);
+//            });
+//          },
+//        ),
+//      ));
+//    });
+//    return choices;
+//  }
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return Wrap(
+//      children: _buildChoiceList(),
+//    );
+//  }
+//}
+//
+//class MultiSelectChip extends StatefulWidget {
+//  final List<String> filterOptions;
+//  final Function(List<String>) onSelectionChanged;
+//
+//  MultiSelectChip(this.filterOptions, this.onSelectionChanged);
+//
+//  @override
+//  _MultiSelectChipState createState() => _MultiSelectChipState();
+//}

@@ -19,7 +19,7 @@ class HeadingItem implements ListItem {
   Widget buildTitle(BuildContext context) {
     return Text(
       heading,
-      style: Theme.of(context).textTheme.title,
+      style: Theme.of(context).textTheme.headline6,
     );
   }
 
@@ -73,21 +73,21 @@ class RestaurantCardItem implements ListItem {
                 : Icon(
                     Icons.clear,
                     color: Colors.transparent,
-                    size: 40.0,
+                    size: 0,
                   ), //can't use null or flutter doesn't like it
             providers.contains(2)
                 ? Image.asset('assets/doordashlogo.jpg', scale: 12)
                 : Icon(
                     Icons.clear,
                     color: Colors.transparent,
-                    size: 40.0,
+                    size: 0,
                   ),
             providers.contains(3)
                 ? Image.asset('assets/ubereatslogo.png', scale: 100)
                 : Icon(
                     Icons.clear,
                     color: Colors.transparent,
-                    size: 40.0,
+                    size: 0,
                   ),
           ],
         )
