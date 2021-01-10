@@ -2,22 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/card.dart';
 import 'package:food_delivery/dataclasses/cart.dart';
 import 'package:food_delivery/menuItemsListPage.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'dataclasses/menuItems.dart';
 
 class RestaurantListPage extends StatelessWidget {
 
-  final List<ListItem> items;
+  final Set<ListItem> items;
 
   RestaurantListPage({Key key, @required this.items}) : super(key: key);
 
-  List<ListItem> listOfMenu = [
-    HeadingItem("McDonalds"), MessageItem("Big Mac", "\$10.95"),
-    MessageItem("Cheese Burgher", "\$9.87"),
-    MessageItem("Double Cheese", "\$9.99")
-  ];
+  // List<ListItem> listOfMenu = [
+  //   HeadingItem("McDonalds"), MessageItem("Big Mac", "\$10.95"),
+  //   MessageItem("Cheese Burgher", "\$9.87"),
+  //   MessageItem("Double Cheese", "\$9.99")
+  // ];
+
+  Set<MenuItem> listOfMenu = Set.from([
+    MenuItem(1, "Tasty Food", 9.99, "Delicious food with delicious description", ["abc", "def"])
+  ]);
 
   @override
   Widget build(BuildContext ctxt) {
@@ -42,7 +45,7 @@ class RestaurantListPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => menuItemsListPage (
+                    builder: (context) => MenuPage (
                       items: listOfMenu
                     )),
               );
@@ -54,32 +57,32 @@ class RestaurantListPage extends StatelessWidget {
   }
 }
 
-Future<Album> fetchAlbum() async {
-  final response = await http.get('https://url.com/api/menu/1');
-
-  // if (response.statusCode == 200) {
-  //   // If the server did return a 200 OK response,
-  //   // then parse the JSON.
-  return Album.fromJson(jsonDecode(response.body));
-  // } else {
-  //   // If the server did not return a 200 OK response,
-  //   // then throw an exception.
-  //   throw Exception('Failed to load album');
-  // }
-}
-
-class Album {
-  final int responseCode;
-  final List<MenuItem> list;
-
-  Album({this.responseCode, this.list});
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      responseCode: json['response_code'],
-      list: json['payload'],
-    );
-  }
-
-
-}
+// Future<Album> fetchAlbum() async {
+//   final response = await http.get('https://url.com/api/menu/1');
+//
+//   // if (response.statusCode == 200) {
+//   //   // If the server did return a 200 OK response,
+//   //   // then parse the JSON.
+//   return Album.fromJson(jsonDecode(response.body));
+//   // } else {
+//   //   // If the server did not return a 200 OK response,
+//   //   // then throw an exception.
+//   //   throw Exception('Failed to load album');
+//   // }
+// }
+//
+// class Album {
+//   final int responseCode;
+//   final List<MenuItem> list;
+//
+//   Album({this.responseCode, this.list});
+//
+//   factory Album.fromJson(Map<String, dynamic> json) {
+//     return Album(
+//       responseCode: json['response_code'],
+//       list: json['payload'],
+//     );
+//   }
+//
+//
+// }
