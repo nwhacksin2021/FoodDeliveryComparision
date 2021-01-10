@@ -1,3 +1,3 @@
 # nwHacks2021
 
-Food Delivery App
+Food Delivery Comparision App
