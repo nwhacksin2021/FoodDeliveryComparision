@@ -4,7 +4,7 @@ const cors = require('cors')
 const routes = require('./routes')
 
 const app = express()
-const port = server.listen(process.env.PORT || 3000)
+const port = process.env.PORT || 3000
 
 // app.use(cors)
 console.log(routes)
