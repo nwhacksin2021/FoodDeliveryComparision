@@ -1,0 +1,1 @@
+web: bin/run_cloud_sql_proxy &>null && cd backend && node ./src/server.js
