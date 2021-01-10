@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "heroku-prebuild": "cd backend && npm install",
-    "start": "cd backend && node ./src/server.js"
+    "start": "bin/run_cloud_sql_proxy &>null && cd backend && node ./src/server.js"
   },
   "author": "",
   "license": "ISC",
