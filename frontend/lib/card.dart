@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import './dataclasses/deliverer.dart';
 
 //class to build list items
 /// The base class for the different types of items the list can contain.
@@ -38,26 +37,8 @@ class RestaurantCardItem implements ListItem {
   final String address;
   final List<int> providers;
 
-  RestaurantCardItem(
-      this.restaurantName, this.openingTime, this.closingTime, this.address, this.providers);
-
-  Widget buildProviders(BuildContext context) {
-
-    var iconOptions = [
-      Icon(size: 15, )
-    ]
-
-    return Column(
-      children: <Widget>[
-        ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: providers.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Deliverer.values[index];
-            }),
-      ],
-    )
-  }
+  RestaurantCardItem(this.restaurantName, this.openingTime, this.closingTime,
+      this.address, this.providers);
 
   @override
   Widget buildTitle(BuildContext context) {
@@ -69,19 +50,48 @@ class RestaurantCardItem implements ListItem {
 
   @override
   Widget buildSubTitle(BuildContext context) {
-    return Text(
-      "Open at: " +
-          DateFormat('hh:mm:ss').format(openingTime) +
-          " \n" +
-          "Close at:" +
-          DateFormat('hh:mm:ss').format(closingTime) +
-          " " +
-          " \n" +
-          "Located at: " +
-          address,
-      style: TextStyle(fontSize: 16.0),
+    return Column(
+      children: <Widget>[
+        Text(
+          "Open at: " +
+              DateFormat('hh:mm:ss').format(openingTime) +
+              " \n" +
+              "Close at:" +
+              DateFormat('hh:mm:ss').format(closingTime) +
+              " " +
+              " \n" +
+              "Located at: " +
+              address,
+          style: TextStyle(fontSize: 16.0),
+        ),
+        Row(
+          children: <Widget>[
+            Text('Supported platforms:'),
+            Padding(padding: EdgeInsets.all(10)),
+            providers.contains(1)
+                ? Image.asset('assets/skiplogo.png', scale: 12)
+                : Icon(
+                    Icons.clear,
+                    color: Colors.transparent,
+                    size: 40.0,
+                  ), //can't use null or flutter doesn't like it
+            providers.contains(2)
+                ? Image.asset('assets/doordashlogo.jpg', scale: 12)
+                : Icon(
+                    Icons.clear,
+                    color: Colors.transparent,
+                    size: 40.0,
+                  ),
+            providers.contains(3)
+                ? Image.asset('assets/ubereatslogo.png', scale: 100)
+                : Icon(
+                    Icons.clear,
+                    color: Colors.transparent,
+                    size: 40.0,
+                  ),
+          ],
+        )
+      ],
     );
-
-
   }
 }

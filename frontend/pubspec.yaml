@@ -50,6 +50,9 @@ flutter:
 
   assets:
     - assets/dingdonglogo.png
+    - assets/doordashlogo.jpg
+    - assets/skiplogo.png
+    - assets/ubereatslogo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

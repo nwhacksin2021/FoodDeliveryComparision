@@ -67,12 +67,18 @@ class Restaurant {
 //      restaurantCategories.add(RestaurantCategory.values[json['restaurant_category_id'][i]]);
 //    }
 
-    List<int> providerIds = new List(); //TODO: idk how to parse this properly
+    List<int> providerIds = new List();
+
+    List<dynamic> providers = json['providers'];
+
+    for (int i = 0; i < providers.length; i++) {
+      providerIds.add(providers[i]['provider_id']);
+    }
 
     return Restaurant(
         json['restaurant_id'],
         json['name'],
-        json['address'] + " " + json['city'],
+        json['address'] + ", " + json['city'],
         null, //delivery fee
         null, //average rating
         providerIds,
@@ -97,8 +103,6 @@ Future<List<Restaurant>> fetchRestaurants(String city) async {
     // If the server did return a 200 OK response,
     // then parse the JSON.
 
-    //build a list of the Restaurant objects:
-
     var decodedJson = json.decode(response.body);
     decodedJson = decodedJson["payload"];
 
@@ -107,7 +111,6 @@ Future<List<Restaurant>> fetchRestaurants(String city) async {
     List<Restaurant> restaurant = List<Restaurant>.from(
         decodedJson.map((model) => Restaurant.fromJson(model)));
 
-    print(restaurant.length);
     return restaurant;
   } else {
     // If the server did not return a 200 OK response,

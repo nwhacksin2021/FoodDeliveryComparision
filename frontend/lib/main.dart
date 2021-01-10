@@ -121,7 +121,6 @@ class EnterAddressFormState extends State<EnterAddressForm> {
 //                      },
 //                    );
                     if (_formKey.currentState.validate()) {
-
                       setState(() {
                         _futureRestaurants = fetchRestaurants(textController
                             .text
@@ -138,7 +137,6 @@ class EnterAddressFormState extends State<EnterAddressForm> {
                                     RestaurantListPage.RestaurantListScreen(
                                         restaurants: restaurants)));
                       }).catchError((onError) {
-                        //TODO
                         print(onError.toString());
                       });
                     }

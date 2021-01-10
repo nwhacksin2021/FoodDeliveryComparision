@@ -37,19 +37,19 @@ class RestaurantListScreen extends StatelessWidget {
               restaurant.name,
               restaurant.openingTime,
               restaurant.closingTime,
-              restaurant.address);
+              restaurant.address,
+              restaurant.listOfSupportedProviders);
 
           return Column(
             children: <Widget>[
               ListTile(
+                contentPadding: EdgeInsets.all(20),
                 title: restaurantCard.buildTitle(context),
                 isThreeLine: true,
                 subtitle: restaurantCard.buildSubTitle(context),
                 onTap: () {
                   //TODO: make API call to fetch menu data
                 },
-                //TODO: show the icons. for some reason you can't access the restaurant variable
-                //trailing: DeliveryLogos(restaurant.listOfSupportedProviders),
               ),
             ],
           );
